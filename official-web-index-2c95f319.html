@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 一段与游戏相伴的时光</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #faf7f2;
+            font-family: 'Georgia', 'Times New Roman', 'Songti SC', 'Noto Serif SC', serif;
+            color: #2c2a27;
+            line-height: 1.8;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .page {
+            max-width: 780px;
+            width: 100%;
+            background: #fffcf8;
+            padding: 2.8rem 2.4rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
+        }
+        @media (max-width: 540px) {
+            body { padding: 1.2rem 0.8rem; }
+            .page { padding: 2rem 1.2rem; }
+        }
+
+        /* 开场短句 — 引用式 */
+        .opening {
+            font-size: 1.6rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            color: #4e4a44;
+            border-left: 4px solid #c7b299;
+            padding-left: 1.4rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+            text-indent: 0;
+        }
+        .opening em {
+            font-style: normal;
+            background: #f1ebe4;
+            padding: 0 0.3em;
+        }
+
+        /* 承接段落 */
+        p {
+            margin-bottom: 1.4rem;
+            text-indent: 2em;
+            font-size: 1.04rem;
+        }
+        p:first-of-type {
+            margin-top: 0.5rem;
+        }
+
+        /* 引用块 / 提示框 */
+        .insight-box {
+            background: #f5f0ea;
+            border-left: 6px solid #b8a48c;
+            padding: 1.2rem 1.6rem;
+            margin: 2rem 0 1.8rem 0;
+            border-radius: 0 12px 12px 0;
+            font-style: normal;
+            font-size: 1rem;
+            color: #3f3b36;
+        }
+        .insight-box p {
+            margin-bottom: 0.5rem;
+            text-indent: 0;
+        }
+        .insight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 特点列表 — 温和的卡片式 */
+        .virtues {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 2rem 0 1.6rem 0;
+        }
+        .virtue-item {
+            flex: 1 1 200px;
+            background: #fcf9f5;
+            border: 1px solid #e5ddd4;
+            padding: 1.2rem 1rem 1.2rem 1.4rem;
+            border-radius: 18px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: box-shadow 0.15s, transform 0.1s;
+        }
+        .virtue-item:hover {
+            box-shadow: 0 6px 14px rgba(0,0,0,0.04);
+            transform: translateY(-2px);
+        }
+        .virtue-item h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #5f5548;
+            margin-bottom: 0.25rem;
+            border-bottom: 1px dashed #ddd6cb;
+            padding-bottom: 0.3rem;
+        }
+        .virtue-item p {
+            text-indent: 0;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            color: #5a534b;
+        }
+
+        /* 温和结尾 — 像后记 */
+        .closing-note {
+            margin-top: 2.4rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e2dad1;
+            font-size: 1rem;
+            text-align: right;
+            color: #6b6258;
+            line-height: 1.7;
+        }
+        .closing-note p {
+            text-indent: 0;
+            margin-bottom: 0.3rem;
+        }
+
+        /* 链接样式 */
+        a {
+            color: #7f6b58;
+            text-decoration: none;
+            border-bottom: 1px solid #d6cbbf;
+            transition: border-color 0.2s, color 0.15s;
+        }
+        a:hover {
+            color: #4d3e30;
+            border-bottom-color: #7f6b58;
+        }
+
+        /* 场景短句（灰调小字） */
+        .scene-quote {
+            background: #f8f4ee;
+            padding: 1rem 1.4rem;
+            border-radius: 40px 12px 40px 12px;
+            margin: 1.6rem 0;
+            font-size: 0.98rem;
+            color: #5a5149;
+        }
+        .scene-quote p {
+            text-indent: 0;
+            margin-bottom: 0.3rem;
+        }
+        .scene-quote p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* faq摘要 */
+        .faq-mini {
+            background: #fffbf7;
+            border: 1px solid #e6ddd3;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            margin: 1.8rem 0 0.4rem 0;
+        }
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #5f5548;
+            padding: 0.2rem 0;
+        }
+        .faq-mini p {
+            text-indent: 0;
+            margin: 0.8rem 0 0 0;
+            font-size: 0.96rem;
+        }
+
+        /* 响应式辅助 */
+        @media (max-width: 440px) {
+            .opening { font-size: 1.3rem; padding-left: 1rem; }
+            .virtue-item { flex: 1 1 100%; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 开场短句 -->
+    <div class="opening">
+        “游戏从来不只是按键和画面，<br>它是藏在童年傍晚里的一句<em>「再玩一会儿」</em>。”
+    </div>
+
+    <!-- 承接段落：从关键词背后的主题内容展开 -->
+    <p>
+        那个年代，红白机的手柄线总是缠在一起，街机厅的摇杆被磨得发亮。我们会在周末的午后挤在电视机前，为一个关卡反复尝试，为一段隐藏剧情兴奋半天。后来屏幕变大了，画面越来越清晰，但那种单纯的快乐，似乎一直留在了某个像素之间。有人说，游戏是第九艺术，而我更愿意相信，它是我们与好奇心的一个约定——无论什么年纪，都愿意为一段未知的旅程按下“开始”。
+    </p>
+
+    <p>
+        在这样一个习惯快速滑动、即时反馈的时代，还有没有人愿意慢慢讲一个关于游戏的故事？如果你也曾在某个夜晚因为一个BGM而怔住，或者因为一条支线任务而沉默许久，那么你大概能理解——<a href="https://official-web-aiyouxi.com.cn">爱游戏</a>这件事，本质上是对生活里那些微小冒险的珍视。它不必轰轰烈烈，只需要在某个瞬间，恰好触动你。
+    </p>
+
+    <!-- 引用块 / 提示框 -->
+    <div class="insight-box">
+        <p>✶ 一位玩家曾写下：</p>
+        <p>“我通关了所有结局，却还是最喜欢第一次迷路时，那个NPC对我说的话。”<br>
+        —— 有些体验，属于第一次，也属于每一次。</p>
+    </div>
+
+    <!-- 特点列表 (温和卡片) -->
+    <div class="virtues">
+        <div class="virtue-item">
+            <h3>· 沉浸 ·</h3>
+            <p>不是为了逃避现实，而是为了一小段心无旁骛的专注。像读一本好书，只是由你亲手翻页。</p>
+        </div>
+        <div class="virtue-item">
+            <h3>· 连接 ·</h3>
+            <p>双人模式的争吵与大笑，联机时的默契或互坑，游戏让孤岛般的个体，有了并肩的航道。</p>
+        </div>
+        <div class="virtue-item">
+            <h3>· 余味 ·</h3>
+            <p>真正的好作品，通关后还会留在心里很久，像雨后的泥土气息，说不清，却记得。</p>
+        </div>
+    </div>
+
+    <!-- 场景短句 柔和氛围 -->
+    <div class="scene-quote">
+        <p>✦ 周末午后，一杯茶，手柄微微发热。</p>
+        <p>✦ 读一封游戏里的信，比现实中的邮件更让人期待。</p>
+        <p>✦ 某个老存档，日期停在五年前的冬天。</p>
+    </div>
+
+    <!-- 温和叙述 衔接 -->
+    <p>
+        有时候我们会问自己：为什么还在玩？明明时间那么少，待办清单那么长。但也许恰恰因为这样，才更需要一个角落，允许我们暂时放下效率，去探索一座虚拟的森林，或者只是让角色站在海边，听一会儿潮声。这不是逃避，而是给自己留白。<a href="https://official-web-aiyouxi.com.cn">爱游戏</a>的人，大抵都懂得这种留白的意义。
+    </p>
+
+    <!-- FAQ摘要 简洁 -->
+    <details class="faq-mini">
+        <summary>一些常常被问到的问题</summary>
+        <p><strong>Q：什么样的游戏值得花时间？</strong><br>
+        没有标准答案。让你在结束之后，还会想跟朋友聊两句的，就值得。</p>
+        <p><strong>Q：偶尔感到游戏疲劳怎么办？</strong><br>
+        那就暂时放下。好的游戏不会跑，等你想念它的时候，它还在那里。</p>
+    </details>
+
+    <!-- 温和结尾 -->
+    <div class="closing-note">
+        <p>—— 游戏是一座随身携带的庭院。</p>
+        <p>你可以随时推开那扇门，看看里面有没有新的四季。</p>
+        <p style="margin-top:0.8rem; font-size:0.9rem; opacity:0.6;">写于一个刚下过雨的傍晚</p>
+    </div>
+
+</div>
+</body>
+</html>
