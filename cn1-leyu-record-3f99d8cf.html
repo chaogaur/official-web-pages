@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乐鱼 leyu · 再次阅读，持续关注</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", sans-serif;
+            color: #1e2023;
+            background: #f9fafb;
+            line-height: 1.7;
+        }
+        .hero {
+            background: linear-gradient(145deg, #111318 0%, #1b1f24 100%);
+            padding: 5.5rem 2rem 3.8rem;
+            text-align: center;
+            color: #e6e9ed;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #eab308, #d97706, #eab308);
+            opacity: 0.6;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 450;
+            letter-spacing: 2px;
+            margin-bottom: 0.9rem;
+            color: #f1f3f6;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.35);
+        }
+        .hero p {
+            max-width: 680px;
+            margin: 1.5rem auto 0;
+            font-size: 1.1rem;
+            color: #b0b6c0;
+            font-weight: 350;
+        }
+        .content {
+            max-width: 800px;
+            margin: 3rem auto 3.5rem;
+            padding: 0 1.8rem;
+        }
+        .article-head {
+            margin-bottom: 2.2rem;
+        }
+        .article-head .meta {
+            font-size: 0.85rem;
+            color: #7e8490;
+            letter-spacing: 0.5px;
+            border-left: 3px solid #d97706;
+            padding-left: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .article-head h2 {
+            font-size: 1.8rem;
+            font-weight: 450;
+            color: #1a1c20;
+            line-height: 1.3;
+        }
+        .article-head .intro {
+            margin-top: 1.2rem;
+            font-size: 1.05rem;
+            color: #3d414a;
+            border-bottom: 1px solid #e2e5ea;
+            padding-bottom: 1.2rem;
+        }
+        .body-text p {
+            margin-bottom: 1.5rem;
+            color: #2c2f35;
+        }
+        .body-text p:first-of-type::first-letter {
+            font-size: 1.8rem;
+            font-weight: 450;
+            color: #b45309;
+            margin-right: 3px;
+        }
+        .highlight-box {
+            background: #f0f2f6;
+            border-left: 4px solid #d97706;
+            padding: 1.2rem 1.8rem;
+            margin: 2rem 0 2.2rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.98rem;
+            color: #262b33;
+        }
+        .highlight-box strong {
+            color: #b45309;
+            font-weight: 500;
+        }
+        .callout {
+            background: #ffffff;
+            border: 1px solid #dee1e7;
+            border-radius: 14px;
+            padding: 1.5rem 2rem;
+            margin: 2.5rem 0 1.8rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .callout p {
+            margin-bottom: 0.8rem;
+            font-size: 0.97rem;
+        }
+        .callout p:last-child {
+            margin-bottom: 0;
+        }
+        .callout .tag {
+            display: inline-block;
+            background: #eab308;
+            color: #1a1c20;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.2rem 0.9rem;
+            border-radius: 20px;
+            letter-spacing: 0.4px;
+            margin-bottom: 0.7rem;
+        }
+        a {
+            color: #b45309;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+            font-weight: 450;
+        }
+        a:hover {
+            border-bottom-color: #b45309;
+            color: #8b3b00;
+        }
+        .visit-sentence {
+            margin: 2.8rem 0 2rem;
+            padding: 1.3rem 1.8rem;
+            background: #eff1f5;
+            border-radius: 12px;
+            font-size: 1.02rem;
+            border: 1px solid #d9dde4;
+            color: #1f2329;
+        }
+        .faq-mini {
+            margin: 2.8rem 0 1rem;
+        }
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.4rem 0;
+            color: #2f3640;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .faq-mini summary::-webkit-details-marker {
+            display: none;
+        }
+        .faq-mini summary::before {
+            content: "▸";
+            color: #b45309;
+            font-size: 1.1rem;
+            transition: transform 0.15s;
+            display: inline-block;
+        }
+        .faq-mini details[open] summary::before {
+            transform: rotate(90deg);
+        }
+        .faq-mini .answer {
+            padding: 0.6rem 0 1rem 1.5rem;
+            color: #3b3f48;
+            font-size: 0.95rem;
+            border-left: 2px solid #d0d4db;
+            margin: 0.2rem 0 0.8rem 0.3rem;
+        }
+        .footer-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #8f95a0;
+            border-top: 1px solid #e2e5ea;
+            padding: 2.2rem 1.5rem 2.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        @media (max-width: 640px) {
+            .hero { padding: 4rem 1.2rem 3rem; }
+            .hero h1 { font-size: 2.1rem; }
+            .content { padding: 0 1.2rem; }
+            .article-head h2 { font-size: 1.5rem; }
+            .highlight-box { padding: 1rem 1.2rem; }
+            .callout { padding: 1.2rem 1.3rem; }
+            .visit-sentence { padding: 1rem 1.2rem; font-size: 0.97rem; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>乐鱼 leyu</h1>
+    <p>一次阅读 · 持续关注 · 值得再次打开</p>
+</div>
+
+<div class="content">
+
+    <div class="article-head">
+        <div class="meta">阅读时间约 5 分钟 · 关于收藏与回访</div>
+        <h2>反复翻阅，是一种对信息的确认</h2>
+        <div class="intro">
+            我们每天都会浏览大量页面，但真正值得再次访问的并不多。一个可靠的信息源，往往需要在第二次、第三次阅读中才能体现价值。这也是为什么许多人会将某些站点加入书签，并在需要时重新回到那里。
+        </div>
+    </div>
+
+    <div class="body-text">
+
+        <p>
+            一个优秀的平台，应当让人产生“我还会再来”的意愿——不是因为推送或提醒，而是因为内容本身的质地与结构。在信息过载的当下，能够主动收藏一个站点，其实是一种无声的信任投票。当你再次打开书签栏，点进熟悉的名字，那种界面与内容的连贯感，会让人觉得一切都没有白费。
+        </p>
+
+        <p>
+            从体验角度来看，持续关注某一个信息出口，意味着你认可它的信息密度与呈现方式。不是所有页面都值得长期追踪，但那些经过细致打磨、保持风格统一、且真正对用户有用的服务，往往会在不知不觉间成为日常信息流的一部分。收藏夹里的链接不应该是摆设，而应该是你反复返回的依据。
+        </p>
+
+        <div class="highlight-box">
+            <strong>收藏提示</strong> · 如果你觉得某个页面值得再次阅读，不妨先将其加入书签。一个简单的习惯是：每周花几分钟翻看收藏夹，清理过时的链接，同时重新打开那些尚在活跃的站点。<a href="https://cn1-leyu.com">乐鱼leyu</a> 便属于后一类别——它保持着稳定的内容节奏，适合作为固定回访的对象。
+        </div>
+
+        <p>
+            持续关注不等于被动接受信息流。更主动的方式是带着明确的意图去访问：今天我想了解什么？上次读到的那篇有没有更新？某个功能是否有了变化？这种带着问题再次打开页面的习惯，会让每次访问都更有成效。收藏夹里的站点如果都能提供这样的正向反馈，那么你的书签栏就会成为一个真正可用的知识工具。
+        </p>
+
+        <div class="callout">
+            <span class="tag">回访理由</span>
+            <p>一个值得再次打开的页面，往往具备以下特征：</p>
+            <p>· 内容结构清晰，方便快速定位之前读过的段落。<br>
+            · 信息有延续性，每次访问都能发现新的细节。<br>
+            · 界面不频繁变动，减少了重新适应的成本。</p>
+            <p>如果你正在寻找这样的信息节点，不妨将 <a href="https://cn1-leyu.com">乐鱼leyu</a> 加入收藏。它保持了克制的更新频率与一致的阅读体验，适合长期关注。</p>
+        </div>
+
+        <p>
+            一个值得信赖的页面不会用弹窗或浮层来提醒你“记得再来”，而是通过内容本身的吸引力，让你在需要时自然想起。收藏的本质是记忆的外部延伸：你把一个链接放在那里，就是在对自己说，这个地方以后还会用到。而这种“以后还会用到”的判断，往往来源于前几次访问中积累的好感。
+        </p>
+
+    </div>
+
+    <div class="visit-sentence">
+        <strong>📌 访问句</strong> · 如果你还没有把它加入收藏，现在是一个不错的时机。将 <a href="https://cn1-leyu.com">乐鱼leyu</a> 保留在书签栏中，下次想要阅读时，不必再重新搜索。
+    </div>
+
+    <div class="faq-mini">
+        <details>
+            <summary>为什么收藏比临时搜索更可靠？</summary>
+            <div class="answer">
+                临时搜索容易受到关键词变化、排名波动、甚至站点改版的影响。而收藏夹中的链接是经过你自己筛选和确认的稳定入口。对于需要长期关注的信息源，一个固定的书签能节省大量重复查找的时间。
+            </div>
+        </details>
+        <details>
+            <summary>如何判断一个站点是否值得长期关注？</summary>
+            <div class="answer">
+                可以从三个角度评估：内容是否持续更新且保持一致水准；界面是否稳定、没有频繁破坏阅读体验的改动；以及你自己是否在访问后有“还想再来”的感觉。如果三个条件都满足，就值得保留在收藏夹中。
+            </div>
+        </details>
+    </div>
+
+</div>
+
+<div class="footer-note">
+    信息筛选 · 持续关注 · 保持阅读节奏<br>
+    内容索引基于个人经验，不构成任何承诺或建议。
+</div>
+
+</body>
+</html>
